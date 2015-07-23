@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+ <!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+       "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
+
+<tiles-definitions>
+
+	<definition name="base.layout" path="/WEB-INF/jsp/base-layout.jsp">
+		<put name="title" value="Periodicals website" />
+		<put name="header" value="/jsp/welcome.jsp" />
+		<put name="menu" value="/jsp/login.jsp" />
+		<put name="content" value="/jsp/periodicals.jsp" />
+		<put name="footer" value="author Sinkevich Alexandra" />
+	</definition>
+	
+	<definition name="login.layout" extends="base.layout">
+		<put name="content" value="/periodicalsList2.do" />
+	</definition>
+
+	<definition name="registration.layout" extends="base.layout">
+		<put name="title" value="Registration" />
+		<put name="content" value="/jsp/registration.jsp" />
+	</definition>
+
+	<definition name="commentsGuest.layout" extends="base.layout">
+		<put name="title" value="Comments" />
+		<put name="content" value="/jsp/comments.jsp" />
+	</definition>
+
+	<definition name="periodicalsBase.layout" path="/WEB-INF/jsp/base-layout2.jsp">
+		<put name="title" value="Periodicals website" />
+		<put name="header" value="/jsp/welcome2.jsp" />
+		<put name="menu" value="/jsp/menu.jsp" />
+		<put name="content" value="/jsp/periodicals.jsp" />
+		<put name="footer" value="author Sinkevich Alexandra" />
+	</definition>
+
+	<definition name="periodicals.layout" extends="periodicalsBase.layout">
+		<put name="content" value="/jsp/periodicals.jsp" />
+	</definition>
+
+	<definition name="periodicalNew.layout" extends="periodicalsBase.layout">
+		<put name="title" value="New periodical" />
+		<put name="content" value="/jsp/periodicalNew.jsp" />
+	</definition>
+
+	<definition name="periodicalDelete.layout" extends="periodicalsBase.layout">
+		<put name="title" value="Delete periodical" />
+		<put name="content" value="/jsp/periodicalDelete.jsp" />
+	</definition>
+
+	<definition name="basket.layout" extends="periodicalsBase.layout">
+		<put name="title" value="Cart" />
+		<put name="content" value="/jsp/basket.jsp" />
+	</definition>
+
+	<definition name="userList.layout" extends="periodicalsBase.layout">
+		<put name="title" value="User list" />
+		<put name="content" value="/jsp/userList.jsp" />
+	</definition>
+
+	<definition name="subscribeList.layout" extends="periodicalsBase.layout">
+		<put name="title" value="Subscribes" />
+		<put name="content" value="/jsp/subscribeList.jsp" />
+	</definition>
+
+	<definition name="comments.layout" extends="periodicalsBase.layout">
+		<put name="title" value="Comments" />
+		<put name="content" value="/jsp/comments.jsp" />
+	</definition>
+	
+	<definition name="subscribe.layout" extends="periodicalsBase.layout">
+		<put name="title" value="Subscribes" />
+		<put name="content" value="/jsp/subscribe.jsp" />
+	</definition>
+
+</tiles-definitions>

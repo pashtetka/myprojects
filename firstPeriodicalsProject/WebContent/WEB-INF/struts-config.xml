@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+
+	<form-beans>
+		<form-bean name="LoginForm" type="by.grsu.publication.forms.LoginForm" />
+		<form-bean name="RegistrationForm" type="by.grsu.publication.forms.RegistrationForm" />
+		<form-bean name="PeriodicalsListForm"
+			type="by.grsu.publication.forms.PeriodicalsListForm" />
+		<form-bean name="PeriodicalNewForm"
+			type="by.grsu.publication.forms.PeriodicalNewForm" />
+		<form-bean name="PeriodicalDeleteForm"
+			type="by.grsu.publication.forms.PeriodicalDeleteForm" />
+		<form-bean name="NewPeriodicalToCartForm" type="by.grsu.publication.forms.NewPeriodicalToCartForm" />
+		<form-bean name="BasketForm" type="by.grsu.publication.forms.BasketForm" />
+		<form-bean name="DeleteBasketForm" type="by.grsu.publication.forms.DeleteBasketForm" />
+		<form-bean name="UserSubscribesForm"
+			type="by.grsu.publication.forms.UserSubscribesForm" />
+		<form-bean name="CommentNewForm" type="by.grsu.publication.forms.CommentNewForm" />
+		<form-bean name="CommentsForm" type="by.grsu.publication.forms.CommentsForm" />
+		<form-bean name="UpdateUserRoleForm"
+			type="by.grsu.publication.forms.UpdateUserRoleForm" />
+		<form-bean name="SearchUserForm" type="by.grsu.publication.forms.SearchUserForm" />
+		<form-bean name="CommentDeleteForm"
+			type="by.grsu.publication.forms.CommentDeleteForm" />
+		<form-bean name="ChangeImageForm" type="by.grsu.publication.forms.ChangeImageForm" />
+		<form-bean name="NewSubscribeForm" type="by.grsu.publication.forms.NewSubscribeForm" />
+	</form-beans>
+
+	<global-forwards>
+		<forward name="welcome" path="/periodicalsList.do?page=1" />
+	</global-forwards>
+
+	<action-mappings>
+
+		<action path="/login" name="LoginForm" validate="true"
+			input="/loginTile.jsp" type="by.grsu.publication.action.LoginAction">
+			<forward name="success" path="/periodicalsList.do?page=1" />
+			<forward name="failure" path="/loginTile.jsp" />
+		</action>
+
+		<action path="/registration" name="RegistrationForm" input="/registrationTile.jsp"
+			type="by.grsu.publication.action.RegistrationAction">
+			<forward name="success" path="/loginTile.jsp" />
+			<forward name="failure" path="/registrationTile.jsp" />
+		</action>
+
+		<action path="/logout" type="by.grsu.publication.action.LogoutAction">
+			<forward name="success" path="/periodicalsList.do?page=1" />
+		</action>
+
+		<action path="/periodicalNew" name="PeriodicalNewForm"
+			validate="true" input="periodicalNew.layout"
+			type="by.grsu.publication.action.PeriodicalNewAction">
+			<forward name="success" path="/periodicalsList.do?page=1" />
+			<forward name="failure" path="periodicalNew.layout" />
+			<forward name="guest" path="/periodicalsList.do?page=1" />
+		</action>
+
+		<action path="/periodicalDelete" name="PeriodicalDeleteForm"
+			input="periodicalDelete.layout" type="by.grsu.publication.action.PeriodicalDeleteAction">
+			<forward name="success" path="/periodicalsList.do?page=1" />
+			<forward name="failure" path="periodicalDelete.layout" />
+			<forward name="guest" path="/periodicalsList.do?page=1" />
+		</action>
+
+		<action path="/periodicalsList" name="PeriodicalsListForm"
+			input="periodicalsBase.layout" type="by.grsu.publication.action.PeriodicalsListAction">
+			<forward name="success" path="periodicalsBase.layout" />
+			<forward name="guest" path="base.layout" />
+		</action>
+
+		<action path="/periodicalsList2" name="PeriodicalsListForm"
+			input="periodicalsBase.layout" type="by.grsu.publication.action.PeriodicalsListAction">
+			<forward name="success" path="/jsp/periodicals.jsp" />
+			<forward name="guest" path="/jsp/periodicals.jsp" />
+		</action>
+
+		<action path="/newPeriodicalToCart" name="NewPeriodicalToCartForm"
+			type="by.grsu.publication.action.NewPeriodicalToCartAction">
+			<forward name="success" path="/periodicalsList.do" />
+			<forward name="failure" path="/periodicalsList.do" />
+			<forward name="guest" path="/loginTile.jsp" />
+		</action>
+		
+		<action path="/newPeriodicalToCart2" name="NewPeriodicalToCartForm"
+			type="by.grsu.publication.action.NewPeriodicalToCartAction">
+			<forward name="success" path="/comments.do" />
+			<forward name="failure" path="/comments.do" />
+			<forward name="guest" path="/loginTile.jsp" />
+		</action>
+
+		<action path="/basket" name="BasketForm" input="basket.layout"
+			type="by.grsu.publication.action.BasketAction">
+			<forward name="success" path="basket.layout" />
+			<forward name="failure" path="/loginTile.jsp" />
+			<forward name="guest" path="/loginTile.jsp" />
+		</action>
+
+		<action path="/deleteBasket" name="DeleteBasketForm"
+			type="by.grsu.publication.action.DeleteBasketAction">
+			<forward name="success" path="/basket.do" />
+			<forward name="guest" path="/loginTile.jsp" />
+		</action>
+		
+		<action path="/deleteSubscribe" name="DeleteBasketForm"
+			type="by.grsu.publication.action.DeleteBasketAction">
+			<forward name="success" path="/subscribe.do" />
+			<forward name="guest" path="/loginTile.jsp" />
+		</action>
+
+		<action path="/userList" name="SearchUserForm"
+			type="by.grsu.publication.action.UserListAction">
+			<forward name="success" path="userList.layout" />
+			<forward name="guest" path="/periodicalsList.do?page=1" />
+		</action>
+
+		<action path="/userSubscribes" name="UserSubscribesForm"
+			type="by.grsu.publication.action.UserSubscribesAction">
+			<forward name="success" path="subscribeList.layout" />
+			<forward name="faulure" path="userList.layout" />
+			<forward name="guest" path="/periodicalsList.do?page=1" />
+		</action>
+
+		<action path="/comments" name="CommentsForm"
+			type="by.grsu.publication.action.CommentsAction">
+			<forward name="faulure" path="/loginTile.jsp" />
+			<forward name="success" path="comments.layout" />
+			<forward name="guest" path="commentsGuest.layout" />
+		</action>
+
+		<action path="/commentNew" name="CommentNewForm" validate="true"
+			input="/comments.do" type="by.grsu.publication.action.CommentNewAction">
+			<forward name="success" path="/comments.jsp" />
+			<forward name="guest" path="/comments.do" />
+		</action>
+
+		<action path="/updateUserRole" name="UpdateUserRoleForm"
+			type="by.grsu.publication.action.UpdateUserRoleAction">
+			<forward name="success" path="/userList.do" />
+			<forward name="guest" path="/periodicalsList.do?page=1" />
+		</action>
+
+		<action path="/commentDelete" name="CommentDeleteForm"
+			type="by.grsu.publication.action.CommentDeleteAction">
+			<forward name="success" path="/comments.do" />
+			<forward name="faulure" path="/comments.do" />
+			<forward name="guest" path="/comments.do" />
+		</action>
+
+		<action path="/language" type="by.grsu.publication.action.LanguageSelectAction">
+			<forward name="success" path="/periodicalsList.do?page=1" />
+			<forward name="failure" path="/periodicalsList.do?page=1" />
+		</action>
+
+		<action path="/changeImage" name="ChangeImageForm"
+			type="by.grsu.publication.action.ChangeImageAction">
+			<forward name="success" path="/comments.do" />
+			<forward name="failure" path="/comments.do" />
+			<forward name="guest" path="/periodicalsList.do?page=1" />
+		</action>
+		
+		<action path="/newSubscribe" name="NewSubscribeForm"
+			type="by.grsu.publication.action.NewSubscribeAction">
+			<forward name="success" path="/basket.do" />
+			<forward name="failure" path="basket.layout" />
+			<forward name="guest" path="/periodicalsList.do" />
+		</action>
+		
+		<action path="/subscribe" name="BasketForm" input="subscribe.layout"
+			type="by.grsu.publication.action.BasketAction">
+			<forward name="success" path="subscribe.layout" />
+			<forward name="failure" path="/loginTile.jsp" />
+			<forward name="guest" path="/loginTile.jsp" />
+		</action>
+
+	</action-mappings>
+
+	<controller processorClass="org.apache.struts.tiles.TilesRequestProcessor" />
+
+	<message-resources parameter="ApplicationResource" />
+
+	<!-- ========================= Tiles plugin ================================= -->
+	<plug-in className="org.apache.struts.tiles.TilesPlugin">
+		<set-property property="definitions-config" value="/WEB-INF/tiles-defs.xml" />
+		<set-property property="moduleAware" value="true" />
+	</plug-in>
+
+	<!-- ========================= Validator plugin ================================= -->
+	<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+		<set-property property="pathnames"
+			value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml" />
+	</plug-in>
+
+</struts-config>
+

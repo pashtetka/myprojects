@@ -1,0 +1,295 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	width: 100%;
+	min-height: 100%;
+	min-width: 1000px;;
+	position: absolute;
+	background-image: url(fon.jpg);
+	background-attachment: fixed;
+}
+
+h1 {
+	font-family: Monotype Corsiva, Arial;
+}
+
+.title {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.header {
+	padding: 10px 0 10px 50px;
+	background: rgba(255, 255, 255, 0.7);
+	border-radius: 20px 20px 20px 20px;
+	margin: 40px 20px 20px 20px;
+}
+
+.header_div {
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.central {
+	width: 100%;
+	display: inline-block;
+}
+
+.cont {
+	width: 100%;
+	display: inline-block;
+}
+
+.cont2 {
+	width: 100%;
+	display: inline-block;
+	margin: 3px;
+}
+
+.content_div {
+	width: 50%;
+	float: left;
+}
+
+.content {
+	margin: 15px;
+	padding: 30px 30px 30px 30px;
+	background: rgba(255, 255, 255, 0.7);
+	border-radius: 20px 20px 20px 20px;
+}
+
+.menu_div {
+	width: 25%;
+	float: left;
+}
+
+.menu {
+	margin: 20px 40px 20px 20px;
+	padding: 20px 10px 20px 30px;
+	background: rgba(255, 255, 255, 0.7);
+	border-radius: 20px 20px 20px 20px;
+}
+
+.labelLogin {
+	width: 30%;
+	float: left;
+	margin: 5px;
+}
+
+.labelLogin2 {
+	width: 10%;
+	float: left;
+	margin: 5px;
+}
+
+input {
+	margin-top: 5px;
+}
+
+.label {
+	width: 20%;
+	float: left;
+	margin: 5px;
+}
+
+.text {
+	float: left;
+	margin: 20;
+	position: relative;
+}
+
+.error {
+	float: left;
+	margin: 5px;
+}
+
+.footer {
+	width: 100%;
+	padding: 20px 0 20px 50px;
+	font-family: Monotype Corsiva, Arial;
+	background: rgba(255, 255, 255, 0.7);
+}
+
+.list {
+	display: inline-block;
+}
+
+.list2 {
+	width: 100%;
+	display: inline-block;
+	margin: 10px 0 10px 0;
+}
+
+.elem1 {
+	width: 130px;
+	height: 100%;
+	float: left;
+	margin: 3px 20px 3px 20px;
+}
+
+.elem2 {
+	width: 60px;
+	float: left;
+	margin: 3px 20px 3px 20px;
+}
+
+.elem3 {
+	width: 70px;
+	float: left;
+	margin: 3px 20px 3px 20px;
+}
+
+.del {
+	width: 100%;
+	float: left;
+	margin: 3px 20px 3px 20px;
+}
+
+.wel_cont a {
+	margin: 15px;
+}
+
+.wel_lang a {
+	margin: 5px;
+}
+
+.comment {
+	margin-left: 5px;
+	width: 100%;
+	float: left;
+}
+
+.delete img {
+	width: 15px;
+	height: 15px;
+	float: left;
+	filter: alpha(Opacity = 80);
+	opacity: 0.8;
+	border-radius: 20px 20px 20px 20px;
+}
+
+.loginComent {
+	width: 88%;
+	float: left;
+	margin: 3px 20px 3px 20px;
+}
+
+input[type=text] {
+	width: 100px;
+}
+
+input[type=password] {
+	width: 100px;
+}
+
+textarea {
+	width: 500px;
+	height: 100px;
+}
+
+input[type=submit] {
+	padding: 3px 5px 3px 5px;
+}
+
+input[type=reset] {
+	padding: 3px 5px 3px 5px;
+}
+
+input[value=search] {
+	padding: 1px 6px 1px 6px;
+}
+
+input[value=Delete] {
+	padding: 5px 10px 5px 10px;
+}
+
+input[value=Add] {
+	padding: 5px 15px 5px 15px;
+}
+
+.wel{
+	width: 100%;
+	display: inline-block;
+}
+
+.wel_cont{
+	width: 70%;
+	float: left;
+}
+
+.wel_lang{
+	width: 30%;
+	margin-left: 70%;
+}
+
+.image{
+	width: 25%;
+	float: left;
+}
+
+.perCont{
+	float: left;
+}
+
+#popup{
+	width: 300px;
+	height: 350px;
+	border: 1px;
+	opacity: 0;
+	position: absolute;
+	left: auto;
+	right: auto;
+	bottom: auto;
+	top: auto;
+	display: none;	
+	-webkit-transition: opacity 0.5s ease-out ;
+	-moz-transition: opacity 0.5s ease-out;
+	-o-transition: opacity 0.5s ease-out;
+	transition: opacity 0.5s ease-out;
+}
+
+#popup img[id=close]{
+	position: absolute;
+	right: -3px;
+	top: -10px;
+}
+
+.back{
+	opacity: 0.7;
+}
+
+#search{
+	width: 150px;
+}
+
+.pages{
+	width: 100%;
+	text-align: center;
+	float: left;
+}
+
+.pages a{
+	padding: 2px;
+}
+
+.periodical{
+	width: 32%;
+	height: 220px;
+	float: left;
+	margin: 5px 2px 5px 2px;
+	text-align: center;
+}
+
+.periodical input{
+	position: relative;
+    top: -130px;
+}
+
+.message{
+	color: green;
+}
+
