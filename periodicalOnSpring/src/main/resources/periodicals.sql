@@ -1,0 +1,1 @@
+INSERT INTO `periodicals`.`users` (`login`, `password`, `e_mail`, `user_Type`, `name`, `surname`) VALUES ('admin', 'admin123', 'tut@mail.ru', 'admin', 'Alexandra', 'Sinkevich');

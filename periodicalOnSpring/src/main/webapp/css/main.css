@@ -1,0 +1,38 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+
+.content {
+/* 	position: absolute;  */
+	margin-left: 20px; 
+	margin-top: 40px; 
+	height:120px; 
+	width:120px;
+}
+
+.img_prop {
+	position: absolute; 
+	width: 100px; 
+	height: 100px; 
+	margin-left: 10px; 
+	margin-top: 10px;
+}
+
+#image {
+	width: 100px; 
+	height: 100px; 
+	border-radius:50%
+}
+
+.body {
+	margin: 20px;
+	width: 120px;
+}
+
+.mark_style {
+	background-color: rgba(0, 128, 0, 0.4);
+	padding: 5px;
+	margin-bottom: 2px;
+}

@@ -1,0 +1,144 @@
+<?xml  version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+
+	<context:property-placeholder location="classpath:db.properties" />
+	
+	<context:annotation-config />
+	<context:component-scan base-package="by.epam.periodicals.services" />
+	<context:component-scan base-package="by.epam.periodicals.controllers" />	
+	<context:component-scan base-package="by.epam.periodicals.bean" />
+	<mvc:annotation-driven/>
+	
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/WEB-INF/pages/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>	
+	
+	<mvc:resources mapping="/resources/**" location="/resources/theme/" />
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+		p:driverClassName="${db.driver}" p:url="${db.url}" p:username="${db.username}"
+		p:password="${db.password}" />
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean name="jva"
+		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="jpaVendorAdapter" ref="jva" />
+		<property name="packagesToScan" value="by.epam.periodicals.model" />
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.connection.charSet">UTF-8</prop>
+				<prop key="org.hibernate.envers.audit_table_suffix">_H</prop>
+				<prop key="org.hibernate.envers.revision_field_name">AUDIT_REVISION</prop>
+				<prop key="org.hibernate.envers.revision_type_field_name">ACTION_TYPE</prop>
+				<prop key="org.hibernate.envers.audit_strategy">org.hibernate.envers.strategy.ValidityAuditStrategy
+				</prop>
+				<prop
+					key="org.hibernate.envers.audit_strategy_validity_end_rev_field_name">AUDIT_REVISION_END</prop>
+				<prop
+					key="org.hibernate.envers.audit_strategy_validity_store_revend_timestamp">True</prop>
+				<prop
+					key="org.hibernate.envers.audit_strategy_validity_revend_timestamp_field_name">AUDIT_REVISION_END_TS</prop>
+			</props>
+		</property>
+	</bean>
+
+	<jpa:repositories base-package="by.epam.periodicals.repository"
+		entity-manager-factory-ref="sessionFactory" transaction-manager-ref="transactionManager" />
+		
+	<task:scheduler id="mySheduler" pool-size="10"/>
+	
+	<task:annotation-driven scheduler="mySheduler"/>
+	
+<!-- 	<task:scheduled-tasks scheduler="mySheduler"> -->
+<!-- 		<task:scheduled ref="periodicalService" method="methodMMM" cron="0 * * * * *"/> -->
+<!-- 	</task:scheduled-tasks> -->
+
+	<!-- <bean id="configurer" -->
+	<!-- class="org.springframework.beans.factory.config.CustomEditorConfigurer" 
+		> -->
+	<!-- <property name="propertyEditorRegistrars" ref="propertyEditorRegistrarsList" 
+		/> -->
+	<!-- </bean> -->
+
+	<!-- <util:list id="propertyEditorRegistrarsList"> -->
+	<!-- <bean class="by.epam.periodicals.editor.DateTimeEditorRegistrar"> -->
+	<!-- <constructor-arg value="${date.format.pattern}"/> -->
+	<!-- </bean> -->
+	<!-- </util:list> -->
+
+	<bean id="conversionService"
+		class="org.springframework.context.support.ConversionServiceFactoryBean">
+		<property name="converters">
+			<list>
+				<bean id="covn" class="by.epam.periodicals.editor.DateTimeEditorRegistrar">
+					<constructor-arg value="${date.format.pattern}" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="proba" class="by.epam.periodicals.model.Proba">
+		<property name="proba" value="2015-05-26" />
+	</bean>
+
+
+	<!-- <bean id="sessionFactory" -->
+	<!-- class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"> -->
+	<!-- <property name="dataSource" ref="dataSource" /> -->
+	<!-- <property name="hibernateProperties"> -->
+	<!-- <props> -->
+	<!-- <prop key="hibernate.hbm2ddl.auto">create</prop> -->
+	<!-- <prop key="hibernate.show_sql">true</prop> -->
+	<!-- <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop> -->
+	<!-- <prop key="hibernate.connection.charSet">UTF-8</prop> -->
+	<!-- </props> -->
+	<!-- </property> -->
+	<!-- <property name="configLocation" value="classpath:hibernate.cfg.xml" 
+		/> -->
+	<!-- </bean> -->
+
+	<jdbc:initialize-database data-source="dataSource">
+		<jdbc:script location="classpath:periodicals.sql" />
+	</jdbc:initialize-database>
+
+	<jpa:auditing auditor-aware-ref="auditorAwareBean" />
+	<bean id="auditorAwareBean" class="by.epam.periodicals.audit.PeriodicalAudit" />
+
+</beans>

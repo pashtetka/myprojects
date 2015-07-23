@@ -1,0 +1,38 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<Configuration>
+	<Appenders>
+		<RollingFile name="SERVER_LOGFILE" fileName="/logs/my.log" filePattern="myproject/periodicalsSpring/logs/my-%d{MM-dd-yyyy}.log.gz">
+			<PatternLayout>
+				<Charset>UTF-8</Charset>
+				<Pattern>%d %-5p %-5c{3}:%L %x -> %m%n</Pattern>
+			</PatternLayout>
+			<Policies>
+				<SizeBasedTriggeringPolicy size="20 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" />
+		</RollingFile>
+
+		<RollingFile name="SERVER_ERROR" fileName="/logs/my-errors.log" filePattern="myproject/periodicalsSpring/logs/my-errors-%d{MM-dd-yyyy}.log.gz">
+			<ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY" />
+			<PatternLayout>
+				<Charset>UTF-8</Charset>
+				<Pattern>%d %-5p %-5c{3}:%L %x -> %m%n</Pattern>
+			</PatternLayout>
+			<Policies>
+				<SizeBasedTriggeringPolicy size="20 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" />
+		</RollingFile>
+		<Console name="CONSOLE" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d %-5p [%t] %C{2} (%F:%L) - %m%n" />
+		</Console>
+
+	</Appenders>
+	<Loggers>
+		<Root level="INFO">
+			<AppenderRef ref="SERVER_LOGFILE" />
+			<AppenderRef ref="SERVER_ERROR" />
+			<AppenderRef ref="CONSOLE" />
+		</Root>
+	</Loggers>
+</Configuration>

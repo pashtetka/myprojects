@@ -1,0 +1,13 @@
+<!DOCTYPE hibernate-configuration PUBLIC 
+    "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>  
+    <mapping class="by.epam.periodicals.model.User" />
+    <mapping class="by.epam.periodicals.model.Comment" />
+    <mapping class="by.epam.periodicals.model.Periodical" />
+    <mapping class="by.epam.periodicals.model.Cart" />
+    <mapping class="by.epam.periodicals.model.Subscribe" />
+    
+  </session-factory>
+</hibernate-configuration>
