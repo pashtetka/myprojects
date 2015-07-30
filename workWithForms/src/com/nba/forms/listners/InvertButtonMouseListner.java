@@ -3,6 +3,8 @@ package com.nba.forms.listners;
 import java.awt.Container;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -26,10 +28,14 @@ public class InvertButtonMouseListner implements MouseListener {
 		if (invertButton.isEnabled()) {
 			ImageModificator modificator = new ImageModificator();
 			JLabel imagePath = (JLabel) pane.getComponent(1);
-			modificator.invertImage(imagePath.getText(), "invert.jpg");
+			Random random = new Random();
+			int randomName = random.nextInt();
+			modificator.invertImage(imagePath.getText(), String.valueOf(randomName));
 			JLabel label = (JLabel) pane.getComponent(7);
-			ImageIcon im = new ImageIcon("invert.jpg");
+			ImageIcon im = new ImageIcon(String.valueOf(randomName));
 			label.setIcon(im);
+			File file = new File(String.valueOf(randomName));
+			file.delete();
 			frame.pack();
 		}
 	}

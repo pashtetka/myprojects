@@ -3,6 +3,8 @@ package com.nba.forms.listners;
 import java.awt.Container;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -26,10 +28,14 @@ public class SmoothButtonMouseListner implements MouseListener {
 		if (smoothButton.isEnabled()) {
 			ImageModificator modificator = new ImageModificator();
 			JLabel imagePath = (JLabel) pane.getComponent(1);
-			modificator.smoothingImage(imagePath.getText(), "smooth.jpg");
+			Random random = new Random();
+			int randomName = random.nextInt();
+			modificator.smoothingImage(imagePath.getText(), String.valueOf(randomName));
 			JLabel label = (JLabel) pane.getComponent(7);
-			ImageIcon im = new ImageIcon("smooth.jpg");
+			ImageIcon im = new ImageIcon(String.valueOf(randomName));
 			label.setIcon(im);
+			File file = new File(String.valueOf(randomName));
+			file.delete();
 			frame.pack();
 		}
 
