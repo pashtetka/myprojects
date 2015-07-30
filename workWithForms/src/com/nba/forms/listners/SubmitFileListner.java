@@ -31,7 +31,9 @@ public class SubmitFileListner implements MouseListener {
 			smoothButton.setEnabled(true);
 			frame.pack();
 		} else {
-			
+			JLabel label = (JLabel) pane.getComponent(10);
+			label.setText("File isn't JPG file!");
+			frame.pack();
 		}
 		
 	}

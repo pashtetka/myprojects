@@ -115,7 +115,7 @@ public class MainFrame extends JFrame {
 		c.gridy = 3;
 		c.ipadx = 20;
 		c.gridwidth = 1;
-		c.insets = new Insets(20, 10, 20, 0);		
+		c.insets = new Insets(20, 10, 0, 0);		
 		pane.add(invertButton, c);
 		
 		//13
@@ -126,9 +126,16 @@ public class MainFrame extends JFrame {
 		c.gridy = 3;
 		c.ipadx = 20;
 		c.gridwidth = 1;
-		c.insets = new Insets(20, 10, 20, 0);		
+		c.insets = new Insets(20, 10, 0, 0);		
 		pane.add(smoothButton, c);
-
+		
+		//04
+		JLabel errorMessage = new JLabel();
+		c.gridx = 0;
+		c.gridy = 4;
+		c.gridwidth = 5;
+		c.insets = new Insets(5, 10, 5, 0);
+		pane.add(errorMessage, c);
 	}
 
 }
