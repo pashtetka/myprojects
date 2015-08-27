@@ -20,23 +20,31 @@ $(document).ready(function(){
 
 		var elemTop = $elem.offset().top;
 		var elemBottom = elemTop + $elem.height();
+		
+		var drawHeight = elemTop + $window.height()*2/3;
 
-		return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+		return ((docViewBottom >= elemTop) && (docViewBottom <= drawHeight));
 	}
 
 		
 	$(window).scroll(function(){
-		scrollh = $(window).scrollTop()+$(window).height();		
+		scrollh = $(window).scrollTop();		
 		elemTop = $(".draw").offset().top;
 		if(isScrolledIntoView(".draw")){
 			var snaps = document.getElementsByClassName("prpr");
 			var arr = [].slice.call(snaps);
-			var drawheight = $(window).scrollTop()+$(window).height()/4;
-			var del = $(window).scrollTop()+$(window).height() - drawheight;
+			
+			var elemTop = $(".draw").offset().top;
+			var docViewBottom = $(window).scrollTop() + $(window).height();
+			
+			var scDraw = docViewBottom - elemTop;
+			
+			var del = $(window).height()*2/3;
+			
 			arr.forEach(function(i){
 				
 				var line=i.getAttribute("data-length");
-				var data = line*(scrollh-drawheight)/del;
+				var data = line*scDraw/del;
 				var style = "stroke-dasharray: "+data+"px, "+line+"px;"
 				i.setAttribute("style",style);
 			});
